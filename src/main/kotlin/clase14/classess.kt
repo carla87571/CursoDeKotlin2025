@@ -4,7 +4,7 @@ class Email (
     // constructor primario con parámetros y declaración de propiedades
     val asunto: String,
     val remitente: String,
-    val mensaje: String,
+    val mensaje: String
 ) {
     var leido: Boolean =false
 
@@ -26,9 +26,9 @@ class Email (
 }
 
 class BandejaEmails() {
-    val emails = mutableListOf<Email>()
+    val emails = mutableListOf<Email>()// Lista mutable para almacenar objetos Email
 
-    fun agregarUnEmail(email: Email) {
+    fun agregarUnEmail(email: Email) { // Agrega un objeto Email a la lista de emails
         emails.add(email)
     }
 
@@ -59,6 +59,7 @@ fun main() {
         remitente = "carlos@empresa.com",
         mensaje = "Hola, tenemos una reunion el viernes a las 10:00 AM."
     )
+    email1.mostrarLaInfo()
     email1.marcarComoLeido()
 
     val bandejaEmails = BandejaEmails()
@@ -74,16 +75,16 @@ fun main() {
     println("- Propiedades: nombre, email")
     println("- Método: mostrarContacto()")
 
-    val contacto = Contacto("Juan")
-    contacto.email = "juanemail.com"
-    println("Email: ${contacto.email}, Válido: ${contacto.esValido}")
+    val contacto = Contacto("Juan", "juan@email.com")
+    contacto.mostrarContacto()
+
 }
 
-class Contacto(val nombre: String) {
-    var email: String = ""
-        set(value) {
-            field = if (value.contains("@")) value else ""
-        }
+class Contacto(val nombre: String, val email: String) {
+
+    fun mostrarContacto() {
+        println("Nombre: $nombre, Email: $email")
+    }
 
     val esValido: Boolean
         get() = email.contains("@") && email.contains(".com")

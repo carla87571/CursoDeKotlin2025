@@ -2,6 +2,11 @@ package clase12
 
 fun main() {
     // Array nos sirven para cuando tenemos una cantidad fija de elementos
+    // Resumen:
+    //Kotlin `arrayOf`: Tamaño fijo, elementos mutables.
+    //Python:
+    //Listas: Tamaño y elementos mutables.
+    //Tuplas: Tamaño y elementos inmutables.
     val emails = arrayOf("juan@empresa.com", "carlos@empresa.com", "wilson@empresa.com")
     val cantidadDeCorreos = arrayOf(1,15,50,100)
 
@@ -9,13 +14,21 @@ fun main() {
     println("El segundo correo es: ${emails[1]}")
     println("El tercer correo es: ${emails[2]}")
 
+    // Modifica y reescribe el primer correo
     emails[0]="nuevocorreojuan@empresa.com"
+    println("La nueva Lista de correos es: ${emails.joinToString(", ")}")
+
+    // set: Otra forma de modificar el correo con Indice 1
     emails.set(1, "nuevocorreojuan@empresa.com")
     println("El primer correo es: ${emails[0]}")
     println("La lista de correos es: ${emails.joinToString(", ")}")
 
-    println("El tamano del array es: ${emails.size}")
+    // size indica la cantidad de elementos en el array
+    println("El tamano del array es: ${emails.size}") // output: 3
 
+
+
+    // mutableListOf nos sirven para cuando tenemos una cantidad variable de elementos
     // Listas mutables son sirven cuando tenemos una cantidad variable de elementos, es decir,
     // es una lista dinamica que puede crecer o decrecer según sea necesario.
     /*
@@ -24,12 +37,20 @@ fun main() {
      */
     val nuevaListaDeEmails = mutableListOf<String>()
     println("Nueva lista : ${nuevaListaDeEmails.joinToString ()} tamaño:${nuevaListaDeEmails.size}")
+
+    // Agrega elementos a la lista mutable
     nuevaListaDeEmails.addAll(arrayOf("juan@empresa.com","carlos@empresa.com", "wilson@empresa.com"))
     println("Nueva lista : ${nuevaListaDeEmails.joinToString ()} tamaño:${nuevaListaDeEmails.size}")
+
+    // Elimina un elemento de la lista mutable
     nuevaListaDeEmails.remove("juan@empresa.com")
     println("Nueva lista : ${nuevaListaDeEmails.joinToString ()} tamaño:${nuevaListaDeEmails.size}")
+
+    // Agrega un elemento en una posición específica de la lista mutable
     nuevaListaDeEmails.add(0,"juan@empresa.com")
     println("Nueva lista : ${nuevaListaDeEmails.joinToString ()} tamaño:${nuevaListaDeEmails.size}")
+
+
 
     // Listas inmutables son útiles cuando no necesitamos modificar la lista después de su creación.
     // Son más eficientes en términos de memoria y rendimiento.

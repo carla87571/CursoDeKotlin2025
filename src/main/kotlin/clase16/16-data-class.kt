@@ -11,6 +11,12 @@ data class EmailData(
     val leido: Boolean = false
 
 )
+data class Contacto(
+    val nombre: String,
+    val email: String
+) {
+
+}
 
 fun main() {
     val emailNormal1 = EmailNormal(asunto = "Reunión", remitente = "jefe@empresa.com", leido = false)
@@ -23,7 +29,7 @@ fun main() {
     println("Clase Normal : $emailNormal1")
     println("Data clase : $emailData2")
 
-    println("Son iguales? ${emailNormal1 == emailNormal2}") // false, compara referencias
+    println("Son iguales? ${emailNormal1 == emailNormal2}") // false, compara referencias o los espacios de memoria
     println("Son iguales? ${emailData1 == emailData2}") // true, compara valores
 
     val email1Copia = emailData1.copy( asunto = "Reunión[Copia]")
@@ -40,6 +46,16 @@ fun main() {
     println("Crea data class 'Contacto' con nombre y email")
     println("Crea dos instancias y verifica si son iguales ")
     println("Copia una de las instancias en otra variable y cambia uno de sus valores")
+
+    // Crear dos instancias de Contacto
+    val contacto1 = Contacto( nombre = "CArla", email = "carla@email.com")
+    val contacto2 = Contacto( nombre = "Juan", email = "juan@email.com")
+    val copiaDeContacto1 = contacto1.copy(nombre = "Carla Modificada")
+
+    // Verificar si son iguales
+    println("¿Son iguales los contactos? ${contacto1 == contacto2}") // false, porque tienen diferente contenido
+
+
 
 
 }

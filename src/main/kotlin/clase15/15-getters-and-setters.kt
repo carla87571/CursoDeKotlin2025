@@ -2,27 +2,33 @@ package clase15
 
 import com.sun.org.apache.xpath.internal.operations.Bool
 
-class Email(val remitente: String, mensaje: String) {
+class Email(val remitente: String, val mensaje: String) {
     var asunto: String = ""
-        set(value) {
-            field = if (value.trim().isEmpty()) "Sin asunto" else value.trim()
+        set(value) { // setter personalizado que se usa para modificar el valor de la propiedad asunto
+            // field almacena el valor real de asunto
+            field = if (value.trim().isEmpty()) value.trim()
+            else "Sin asunto"
+                value.trim()
+            // Si el valor que intentas asignar (value) está vacío o tiene solo espacios, se asigna "Sin asunto".
+            //Si no está vacío, se asigna el valor limpio (sin espacios al inicio o al final) usando value.trim().
         }
 
+    // val esImportante es una propiedad calculada de solo lectura (val), que verifica si el asunto contiene la palabra "urgente" (ignorando mayúsculas y minúsculas) y devuelve true o false según corresponda.
     val esImportante: Boolean
+
         get() = asunto.contains("urgente", ignoreCase = true)
 }
 
-class Contacto(
-    private var _email: String = ""
-) {
-    var email: String
-        get() = _email
+class Contacto(val nombre: String) {
+    var email: String = ""
         set(value) {
-            _email = if (value.contains("@")) value else ""
+            field = if (value.contains("@")) value else ""
         }
-
     val esValido: Boolean
-        get() = _email.isNotEmpty() && _email.contains("@")
+        get() = email.contains("@") && email.contains(".com")
+
+
+
 }
 fun main() {
     val email1 = Email(remitente = "carla@empresa.com", mensaje = "Este es un mensaje de correo")
@@ -36,6 +42,10 @@ fun main() {
     println("Crea clase 'Contacto' con:")
     println("- Setter para email: validar que contenga '@' para agregarlo. En caso contrario dejarlo vacio")
     println("- Propiedad calculada 'esValido'")
+
+    val contacto = Contacto("Juan")
+    contacto.email = "juan@email.com"
+    println("Email: ${contacto.email}, es válido?: ${contacto.esValido}") // Debería imprimir true
 }
 
 
